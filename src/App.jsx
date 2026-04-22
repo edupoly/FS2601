@@ -1,7 +1,7 @@
 function App() {
   return (
-    <div>
-      <h1>Hello Main</h1>
+    <div className="border border-danger border-2 m-2 p-2">
+      <h1>Hello App</h1>
     </div>
   );
 }
