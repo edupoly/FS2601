@@ -1,7 +1,8 @@
 import React from "react";
+import Todo from "./Todo";
 
 function Todolist() {
-  console.log("Todolist re rendered");
+  console.log("Todolist rendered");
   //state
   var [todos, setTodos] = React.useState([
     "goto gym",
@@ -10,15 +11,15 @@ function Todolist() {
     "complete syllabus",
   ]);
   //action
-  function addTodo() {
+  var addTodo = function () {
     var a = document.getElementById("d1").value;
     // todos.push(a);//wrong because UI will not render//state is immutable
     // setTodos([...todos, a]);
     setTodos((cv) => {
       return [...cv, a];
     });
-  }
-  function deleteTodo(index) {
+  };
+  var deleteTodo = React.useCallback(function (index) {
     // var temp = [...todos];
     // temp.splice(index, 1);
     // setTodos([...temp]);
@@ -29,7 +30,7 @@ function Todolist() {
         }
       });
     });
-  }
+  }, []);
   //ui
   return (
     <div className="border border-2 p-2 m-2 border-primary">
@@ -44,18 +45,7 @@ function Todolist() {
       </button>
       <ul>
         {todos.map((t, i) => {
-          return (
-            <li>
-              {t}
-              <button
-                onClick={() => {
-                  deleteTodo(i);
-                }}
-              >
-                Delete
-              </button>
-            </li>
-          );
+          return <Todo t={t} key={i} i={i} deleteTodo={deleteTodo}></Todo>;
         })}
       </ul>
     </div>
