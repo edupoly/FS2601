@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Todo from "./Todo";
 
 function Todolist() {
-  var [filterType, setFilterType] = React.useState("all");
-
+  var [filterType, setFilterType] = useState("all");
+  var [newTodo, setNewTodo] = useState("");
   var [todos, setTodos] = useState([
     {
       title: "Play Cricket",
@@ -86,6 +86,12 @@ function Todolist() {
   return (
     <div className="border border-2 p-2 m-2 border-success">
       <h1>Todolist</h1>
+      <input
+        type="text"
+        onChange={(ev) => {
+          setNewTodo(ev.target.value);
+        }}
+      />
       <div className="d-flex">
         <input
           type="radio"
@@ -130,6 +136,7 @@ function Todolist() {
               toggleTask={toggleTask}
               deleteTodoItem={deleteTodo}
               i={i}
+              key={i}
             ></Todo>
           );
         })}
@@ -138,4 +145,4 @@ function Todolist() {
   );
 }
 
-export default Todolist;
+export default React.memo(Todolist);
