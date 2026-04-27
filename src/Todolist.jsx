@@ -45,7 +45,7 @@ function Todolist() {
       <ul>
         {todos.map((t, i) => {
           return (
-            <li>
+            <li key={i}>
               {t}
               <button
                 onClick={() => {
