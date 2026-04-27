@@ -1,6 +1,7 @@
 import React from "react";
 
 function Todolist() {
+  console.log("Todolist re rendered");
   //state
   var [todos, setTodos] = React.useState([
     "goto gym",
@@ -61,4 +62,5 @@ function Todolist() {
   );
 }
 
-export default Todolist;
+export default React.memo(Todolist);
+// React.memo is HOC
