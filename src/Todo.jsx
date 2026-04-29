@@ -1,7 +1,7 @@
 import React from "react";
 
 function Todo(props) {
-  console.log("Todo item rendered");
+  console.log(props.todo.title + "Todo item rendered");
   return (
     <li className="shadow m-1 p-2 d-flex align-items-center justify-content-between">
       <b className={props.todo.status ? "text-decoration-line-through" : ""}>

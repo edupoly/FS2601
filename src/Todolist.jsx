@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Todo from "./Todo";
-
+import { v4 as uuidv4 } from "uuid";
 function Todolist() {
   var [filterType, setFilterType] = useState("all");
   var [newTodo, setNewTodo] = useState("");
@@ -8,65 +8,59 @@ function Todolist() {
     {
       title: "Play Cricket",
       status: true,
+      id: uuidv4(),
     },
     {
       title: "Join Gym",
       status: true,
+      id: uuidv4(),
     },
     {
       title: "Goto Goa",
       status: false,
+      id: uuidv4(),
     },
     {
       title: "Attend Workshop",
       status: true,
+      id: uuidv4(),
     },
     {
       title: "Marketing Team",
       status: false,
+      id: uuidv4(),
     },
     {
       title: "AI Team Meeting",
       status: false,
+      id: uuidv4(),
     },
     {
       title: "Consultant Call",
       status: true,
+      id: uuidv4(),
     },
   ]);
   var [filteredTodos, setFilteredTodos] = React.useState([...todos]);
-  function deleteTodo(index) {
-    // ***with temp array **** //
-    // var temp = [...todos];
-    // temp.splice(index, 1);
-    // setTodos([...temp]);
 
-    //using setter callback
+  var deleteTodo = useCallback(function (index) {
     setTodos((ctodos) => {
-      return ctodos.filter((t, i) => {
-        if (i === index) {
+      return ctodos.filter((t) => {
+        if (t.id === index) {
           return false;
         } else {
           return true;
         }
       });
     });
-  }
-  // function doneTask(index) {
-  //   var temp = [...todos];
-  //   temp[index].status = true;
-  //   setTodos([...temp]);
-  // }
-  // function undoTask(index) {
-  //   var temp = [...todos];
-  //   temp[index].status = false;
-  //   setTodos([...temp]);
-  // }
-  function toggleTask(index) {
+  }, []);
+
+  var toggleTask = useCallback(function (index) {
     var temp = [...todos];
     temp[index].status = !temp[index].status;
     setTodos([...temp]);
-  }
+  }, []);
+
   function handleFilter(f) {
     setFilterType(f);
     if (f === "all") {
@@ -127,7 +121,7 @@ function Todolist() {
       </div>
       <h1>Slected Filter:{filterType}</h1>
       <ul className="p-0 list-unstyled">
-        {filteredTodos.map((todo, i) => {
+        {filteredTodos.map((todo) => {
           return (
             <Todo
               todo={todo}
@@ -135,8 +129,8 @@ function Todolist() {
               // undoTask={undoTask}
               toggleTask={toggleTask}
               deleteTodoItem={deleteTodo}
-              i={i}
-              key={i}
+              i={todo.id}
+              key={todo.id}
             ></Todo>
           );
         })}
