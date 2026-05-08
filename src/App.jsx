@@ -11,6 +11,10 @@ function App() {
       <Link to="/contact">Contactus</Link>
       &nbsp;&nbsp;&nbsp;
       <Link to="/counter">Counter</Link>
+      &nbsp;&nbsp;&nbsp;
+      <Link to="/products">Products</Link>
+      &nbsp;&nbsp;&nbsp;
+      <Link to="/recipes">Recipes</Link>
       <Outlet></Outlet>
     </div>
   );
