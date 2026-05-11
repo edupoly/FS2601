@@ -1,7 +1,10 @@
+import StudentForm from "./StudentForm";
+
 function App() {
   return (
-    <div>
+    <div className="border border-2 border-danger p-2 m-2">
       <h1>Hello Main</h1>
+      <StudentForm></StudentForm>
     </div>
   );
 }
