@@ -12,10 +12,20 @@ export const productApi = createApi({
     getProductDetailsById: builder.query({
       query: (id) => `/${id}`,
     }),
+    addProduct: builder.mutation({
+      query: (newProduct) => ({
+        url: `/`,
+        method: "POST",
+        body: newProduct,
+      }),
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetAllProductsQuery, useGetProductDetailsByIdQuery } =
-  productApi;
+export const {
+  useGetAllProductsQuery,
+  useGetProductDetailsByIdQuery,
+  useAddProductMutation,
+} = productApi;
